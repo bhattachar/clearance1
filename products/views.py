@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from .models import Product, Brand
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+import operator
 
 
 	
 # front end template rendering function start
 
 def home(request):
-
-	products = Product.objects.order_by("-clearance")
+	products = Product.objects.all()
+	# products = Product.objects.order_by('-clearance')
 	paginator = Paginator(products, 18) 
 	page = request.GET.get('page')
 	try:
